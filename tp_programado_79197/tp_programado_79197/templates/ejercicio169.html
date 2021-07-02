@@ -1,0 +1,172 @@
+<style type="text/css">
+    .center {
+      text-align: center;
+    }
+
+    .tituloPropio {
+      border-bottom-style: solid;
+      border-color: gray;
+      border-bottom-width: thin;
+      padding-bottom: 0.1em;
+      margin-bottom: 0.5em;
+    }
+
+    .derecha {
+      text-align: right;
+    }
+
+    .tabla thead {
+      background-color: #ebebeb;
+    }
+
+    .tabla td:hover {
+      background-color: #ebebebf6;
+      color: black;
+    }
+
+    .tabla th {
+      color: black;
+    }
+
+    .miboton {
+      margin: 0.5em;
+    }
+</style>
+
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Tp4{% endblock %}
+
+{% block content %}
+
+
+<div class="index-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">TPF</h1>
+    <p class="lead">Ejercicio 169</p>
+</div>
+
+
+<!-- Tabla de datos -->
+<div class="container mt-5">
+    <p>La siguiente tabla contiene datos sobre la población de búhos amarillos en Wyman Woods, Oxford,
+Inglaterra (recopilados por Southern).
+    </p>
+  <table class="table table-dark table-borderless tabla mt-3">
+    <thead>
+      <tr>
+        <th class="text-center">Año</th>
+        <th class="text-center">Población</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-center">1947</td>
+        <td class="text-center">34</td>
+      </tr>
+      <tr>
+        <td class="text-center">1948</td>
+        <td class="text-center">40</td>
+      </tr>
+      <tr>
+        <td class="text-center">1949</td>
+        <td class="text-center">40</td>
+      </tr>
+      <tr>
+        <td class="text-center">1950</td>
+        <td class="text-center">40</td>
+      </tr>
+      <tr>
+        <td class="text-center">1951</td>
+        <td class="text-center">42</td>
+      </tr>
+      <tr>
+        <td class="text-center">1952</td>
+        <td class="text-center">48</td>
+      </tr>
+      <tr>
+        <td class="text-center">1953</td>
+        <td class="text-center">49</td>
+      </tr>
+      <tr>
+        <td class="text-center">1954</td>
+        <td class="text-center">52</td>
+      </tr>
+      <tr>
+        <td class="text-center">1955</td>
+        <td class="text-center">60</td>
+      </tr>
+      <tr>
+        <td class="text-center">1956</td>
+        <td class="text-center">64</td>
+      </tr>
+      <tr>
+        <td class="text-center">1957</td>
+        <td class="text-center">64</td>
+      </tr>
+      <tr>
+        <td class="text-center">1958</td>
+        <td class="text-center">62</td>
+      </tr>
+      <tr>
+        <td class="text-center">1959</td>
+        <td class="text-center">64</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+{% if form %}
+
+    <div class="container">
+        <!-- Parametros de entrada -->
+            <form class="bg-light mr-5" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {% crispy form form.helper %}   
+                <!-- Boton avanzar -->
+                <div class="row justify-content-center mb-3">
+                    <input type="submit" class="btn btn-primary" value="Avanzar">
+                </div>
+            </form>
+    </div>
+
+{% else %}
+
+    <div class="container mt-5">
+        <!-- Tabla de datos de entrada-->
+        <div class="index-header">
+            <h5>Población Límite</h5>
+        </div>
+
+        <div class="mt-3 text-center">
+           <table class="table table-dark table-borderless tabla mt-3">
+        <thead>
+          <tr>
+              <th class="text-center">e^-A</th>
+              <th class="text-center">Población límite (A/B)</th>
+              <th class="text-center">t1-t0</th>
+              <th class="text-center">t2-t1</th>
+              <th class="text-center">T</th>
+              <th class="text-center">t</th>
+              <th class="text-center">P(t)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td class="text-center">{{e_a}}</td>
+              <td class="text-center">{{a_sobre_b}}</td>
+              <td class="text-center">{{ta}}</td>
+              <td class="text-center">{{tb}}</td>
+              <td class="text-center">{{T}}</td>
+              <td class="text-center">{{t}}</td>
+              <td class="text-center">{{ resultado }}</td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+    </div>
+
+{% endif %}
+{% endblock %}
